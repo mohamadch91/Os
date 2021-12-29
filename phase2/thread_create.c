@@ -8,7 +8,7 @@ int thread_create(void (*fn) (void*),void* arg){
     void *fptr = malloc(2 * (PAGESIZE));
     void *stack;
     if(fptr == 0){
-        fprintf("thread_create: out of memory\n");
+        printf(1,"thread_create: out of memory\n");
         return -1;
 
     }
@@ -22,11 +22,11 @@ int thread_create(void (*fn) (void*),void* arg){
     int thread_id=clone((void*)stack);
     //check the CLONE
     if(thread_id<0){
-        fprintf(1,"thread_create: clone failed\n");
-        // return -1;
+        printf(1,"thread_create: clone failed\n");
+         return -1;
     }
     //child
-    if(thread_id==0){
+    else if(thread_id==0){
         //call the function
         fn(arg);
         //fre the stack
