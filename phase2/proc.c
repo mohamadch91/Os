@@ -778,6 +778,9 @@ join(void){
         p->name[0] = 0;
         p->killed = 0;
         p->state = UNUSED;
+        p->stackTop = 0;
+        p->pgdir = 0;
+        p->threads = -1;
         release(&ptable.lock);
         return pid;
       }
